@@ -58,6 +58,7 @@
   border: none;
   padding: 8px 15px;
   width: 100%;
+  cursor: pointer;
 }
 
 .card_terms {

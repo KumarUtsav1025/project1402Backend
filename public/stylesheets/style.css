@@ -6,3 +6,85 @@ body {
 a {
   color: #00B7FF;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-row form{
+  padding-left: 10px;
+}
+
+.flex-row button {
+  background-color: #4fbe33;
+  color: #ffffff;
+  font-size: 20px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  padding: 8px 15px;
+  width: 100%;
+  cursor: pointer;
+}
+
+
+.flex-item-left {
+  padding: 10px;
+  flex: 50%;
+}
+
+.flex-item-right {
+  padding: 10px;
+  flex: 50%;
+  padding-top: 60px;
+}
+
+/*webpage content*/
+
+body{
+
+  background-color: #FFEFD5;
+}
+
+h1, h2, h3, h4 {
+
+  font-family: Source Sans Pro, sans-serif;
+  
+}
+
+h1{
+  font-size: 75px;
+}
+
+p {
+
+  font-family: Spectral, serif;
+  font-size: 15 px;
+}
+
+img {
+  width: 320px;
+}
+
+body {
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+/* Responsive layout - mobile format */
+@media (max-width: 675px) {
+  .flex-item-right, .flex-item-left {
+    flex: 100%;
+  }
+}

@@ -5,7 +5,33 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="flex-container">
+      <div class="flex-item-left">
+
+         <h1>Express Backend</h1>
+                
+
+      </div>
+      <div class="flex-item-right">
+
+         <h2>Objective</h2>
+         <p>Allow web admins to monitor changes in db</p>
+         <hr>
+         <h2>Support</h2>
+         <p>Provide neccessary backend facility to project1402</p>
+         <hr>
+         <div class="flex-row">
+          <form action="/users/register" method="get">
+            <button type="submit">Sign Up!</button>
+          </form>
+          <form action="/users/login" method="get">
+            <button type="submit">Log In!</button>
+          </form>
+         </div>
+        <hr>
+         <p>Developed by .......</p>
+         <hr>
+      </div>
+    </div> 
   </body>
 </html>
