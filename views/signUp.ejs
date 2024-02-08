@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="/stylesheets/signup.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            if (username.trim() === '' || email.trim() === '' || password.trim() === '') {
+                alert("Please fill in all fields");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+  <div>
+    <% if (errorMessage) { %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> <%= errorMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+      <div class="containerUT">
+          <div class="cardUT">
+            <div class="card_titleUT">
+              <h1>Create Account</h1>
+              <span>Already have an account? <a href="login">Sign In</a></span>
+            </div>
+            <div class="formUT">
+              <form action="/users/register" method="post" onsubmit="return validateForm()">
+                  <input type="text" name="username" id="username" placeholder="UserName" />
+                  <input type="email" name="email" placeholder="Email" id="email" />
+                  <input type="password" name="password" placeholder="Password" id="password" />
+                  <button type="submit">Sign Up</button>
+              </form>
+            </div>
+          </div>
+      </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

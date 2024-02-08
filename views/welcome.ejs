@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/stylesheets/welcome.css"></link>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome</h1>
+        <form action="/users/logout" method="get">
+            <button type="submit">Logout</button>
+        </form>
+        <div class="student-cards">
+            <% students.forEach(function(student) { %>
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><%= student.name %></h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Insta: <%= student.insta %></p>
+                        <p class="card-text">Age: <%= student.age %></p>
+                        <p class="card-text">Year: <%= student.year %></p>
+                        <p class="card-text">Gender: <%= student.gender %></p>
+                        <p class="card-text">Response: <%= student.response %></p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>
