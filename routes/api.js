@@ -3,6 +3,17 @@ const router = express.Router();
 const Student = require('../models/students');
 const Pair = require('../models/pairs');
 
+router.get('/getStudent/:insta', async function(req, res){
+  try {
+      const users = await Student.findOne({insta:req.params.insta})
+      res.status(200).json(users);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
 router.get('/getStudent', async function(req, res){
     try {
         const users = await Student.find();
