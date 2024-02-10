@@ -6,6 +6,7 @@ var logger = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
+const cors = require('cors');
 
 const db = require('./mongoDB');
 
@@ -19,6 +20,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(cors());
 
 //session setup
 app.use(session({
