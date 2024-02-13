@@ -3,14 +3,50 @@ const router = express.Router();
 const Student = require('../models/students');
 const Pair = require('../models/pairs');
 
-router.get('/getStudent/:insta', async function(req, res){
+router.get('/getPair/insta/:insta', async function(req, res){
   try {
-      const users = await Student.findOne({insta:req.params.insta})
-      res.status(200).json(users);
+      let pair =[];
+      const users = await Student.findOne({insta:req.params.insta});
+      if(users.gender == 'Male'){
+        pair = await Pair.findOne({male: users.id});
+      }
+      if(users.gender == 'Female'){
+        pair = await Pair.findOne({female: users.id});
+      }
+
+      const male = await Student.findById(pair.male);
+      const female = await Student.findById(pair.female);
+      res.status(200).json({ male, female });
     } catch (error) {
       console.error('Error fetching users:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
+});
+
+router.get('/getPair/name/:name', async function(req, res){
+  try {
+    const pairedIndividuals = [];
+    const users = await Student.find({ name: { $regex: new RegExp(req.params.name, "i") } });
+    for(const user of users){
+      if(user.gender == 'Male'){
+        const pair = await Pair.findOne({male: user.id});
+        const male = user;
+        const female = await Student.findById(pair.female);
+        pairedIndividuals.push({ male, female });
+      }
+      if(user.gender == 'Female'){
+        const pair = await Pair.findOne({female: user.id});
+        const male = await Student.findById(pair.male);
+        const female = user;
+        pairedIndividuals.push({ male, female });
+      }
+    }
+    res.status(200).json(pairedIndividuals);
+
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 
@@ -70,6 +106,18 @@ router.get('/getResults', async function(req, res){
         console.error('Error fetching users:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
+});
+
+
+router.get('/getPairs', async function(req, res){
+  try {
+      const pairs = await Pair.find();
+
+      res.status(200).json(pairs);
+  } catch (error) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 
